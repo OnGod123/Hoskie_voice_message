@@ -19,6 +19,14 @@
             'recipient': recipient
         }))
 
+         message = Message.objects.create(
+                room=self.room,
+                sender=self.sender,
+                recipient=self.recipient,
+                # Add content field for text messages (assuming data contains text)
+                content=data.get('content', ''),  # Get content from data if present
+            )
+
     def validate_message_data(self, data):
         # Base validation for required fields and data types
         if not isinstance(data, dict) or 'type' not in data or 'data' not in data:
